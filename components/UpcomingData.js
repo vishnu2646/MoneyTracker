@@ -2,10 +2,10 @@ import { StyleSheet, Text, View, FlatList, Image } from "react-native";
 import React from "react";
 import { SIZES, COLORS, icons } from "../constants";
 
-const UpcomingData = ({ selectedCategory }) => {
+const UpcomingData = ({ selectedCategory, type }) => {
 
-    let allData = selectedCategory ? selectedCategory.expenses : [];
-    let upcomingData = allData.filter(a => a.status === 'p');
+    let allData = type === "EXPENSE" ? selectedCategory?.expenses : selectedCategory?.incomes;
+    let upcomingData = allData?.filter(a => a.status === 'p');
     
     function renderUpComingExpenseTitle(length) {
         return (
@@ -22,7 +22,7 @@ const UpcomingData = ({ selectedCategory }) => {
                         lineHeight: 22
                     }}
                 >
-                    UPCOMING EXPENSE {selectedCategory?.name ? <Text style={{ fontWeight: '900' }}>: {selectedCategory?.name}</Text> : ""}
+                    UPCOMING {type} {selectedCategory?.name ? <Text style={{ fontWeight: '900' }}>: {selectedCategory?.name?.toUpperCase()}</Text> : ""}
                 </Text>
                 <Text 
                     style={{
@@ -152,8 +152,8 @@ const UpcomingData = ({ selectedCategory }) => {
 
     return (
         <View>
-            {renderUpComingExpenseTitle(upcomingData.length)}
-            {upcomingData.length > 0 ? (
+            {renderUpComingExpenseTitle(upcomingData?.length)}
+            {upcomingData?.length > 0 ? (
                 <FlatList 
                     data={upcomingData}
                     renderItem={renderItem}
