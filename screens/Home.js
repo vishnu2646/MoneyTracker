@@ -13,12 +13,13 @@ import {
     Tabs,
     UpcomingData
 } from "../components";
-import { categoriesData } from "../data/data";
+import { categoriesData, incomeCategoriesData } from "../data/data";
 
 const Home = ({navigation}) => {
 
-    const [viewMode, setViewMode] = useState('list');
+    const [viewMode, setViewMode] = useState('chart');
     const [categories, setCategories] = useState(categoriesData);
+    const [incomeCategories, setIncomeCategories] = useState(incomeCategoriesData);
     const [selectedCategory, setSelectedCategory] = useState(null);
 
     return (
@@ -45,19 +46,37 @@ const Home = ({navigation}) => {
             />
 
             <ScrollView contentContainerStyle={{ paddingBottom: 60 }}>
-                {
-                    viewMode === 'list' && (
-                        <View>
-                            <CategoryList
-                                data={categories}
-                                setSelectedCategory={setSelectedCategory}
-                            />
-                            <UpcomingData
-                                selectedCategory={selectedCategory}
-                            />
-                        </View>
-                    )
-                }
+                <>
+                    {
+                        viewMode === 'list' && (
+                            <View>
+                                <CategoryList
+                                    data={categories}
+                                    setSelectedCategory={setSelectedCategory}
+                                />
+                                <UpcomingData
+                                    type="EXPENSE"
+                                    selectedCategory={selectedCategory}
+                                />
+                            </View>
+                        )
+                    }
+                    {
+                        viewMode === 'chart' && (
+                            <View>
+                                <CategoryList
+                                    data={incomeCategories}
+                                    setSelectedCategory={setSelectedCategory}
+                                />
+                                <UpcomingData
+                                    type="INCOME"
+                                    selectedCategory={selectedCategory}
+                                />
+                            </View>
+                        )
+                    }
+                </>
+
             </ScrollView>
         </View>
     );

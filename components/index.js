@@ -9,5 +9,5 @@ export {
     Header,
     CategoryList,
     Tabs,
-    UpcomingData
+    UpcomingData,
 }
