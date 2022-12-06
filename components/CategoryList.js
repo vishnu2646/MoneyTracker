@@ -1,6 +1,18 @@
-import { StyleSheet, Text, View, Animated, TouchableOpacity, FlatList, Image } from "react-native";
+import { 
+    StyleSheet, 
+    Text, 
+    View, 
+    Animated, 
+    TouchableOpacity, 
+    FlatList, 
+    Image 
+} from "react-native";
 import React, { useRef, useState } from "react";
-import { SIZES, COLORS, icons } from "../constants";
+import { 
+    SIZES, 
+    COLORS, 
+    icons 
+} from "../constants";
 
 const CategoryList = ({ data, setSelectedCategory }) => {
 

@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import { Home, Expense, Income } from './screens';
+import { Home, Expense, Income, Detail } from './screens';
 
 const theme = {
     ...DefaultTheme,
@@ -21,9 +21,46 @@ export default function App() {
                 }}
                 initialRouteName={'Home'}
             >
-                <Stack.Screen name="Home" component={Home} />
-                <Stack.Screen name="Expense" component={Expense}/>
-                <Stack.Screen name="Income" component={Income}/>
+                <Stack.Screen
+                    name="Home" 
+                    component={Home}
+                    options={{
+                        headerShown: false,
+                        presentation: 'modal',
+                        animationTypeForReplace: 'push',
+                        animation:'slide_from_right'
+                    }}
+                />
+                <Stack.Screen 
+                    name="Expense" 
+                    component={Expense}
+                    options={{
+                        headerShown: false,
+                        presentation: 'modal',
+                        animationTypeForReplace: 'push',
+                        animation:'slide_from_right'
+                    }}
+                />
+                <Stack.Screen 
+                    name="Income" 
+                    component={Income}
+                    options={{
+                        headerShown: false,
+                        presentation: 'modal',
+                        animationTypeForReplace: 'push',
+                        animation:'slide_from_right'
+                    }}
+                />
+                <Stack.Screen 
+                    name="Detail" 
+                    component={Detail}
+                    options={{
+                        headerShown: false,
+                        presentation: 'modal',
+                        animationTypeForReplace: 'push',
+                        animation:'slide_from_right'
+                    }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );

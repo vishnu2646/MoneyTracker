@@ -13,7 +13,10 @@ import {
     Tabs,
     UpcomingData
 } from "../components";
-import { categoriesData, incomeCategoriesData } from "../data/data";
+import { 
+    categoriesData, 
+    incomeCategoriesData 
+} from "../data/data";
 
 const Home = ({navigation}) => {
 
@@ -28,6 +31,7 @@ const Home = ({navigation}) => {
             {/* navbar */}
             <Navbar
                 navigation={navigation}
+                isFromHome
             />
 
             {/* header section */}
@@ -71,6 +75,7 @@ const Home = ({navigation}) => {
                                 <UpcomingData
                                     type="INCOME"
                                     selectedCategory={selectedCategory}
+                                    navigation={navigation}
                                 />
                             </View>
                         )
