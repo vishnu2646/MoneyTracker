@@ -18,7 +18,7 @@ const Header = ({ title, description, month, percentage, category, content, time
             backgroundColor: COLORS.white
         }}>
             <View>
-                <Text style={{ color: COLORS.primary, fontSize: 22, lineHeight: 30 }}>{title}</Text>
+                <Text style={{ color: COLORS.primary, fontSize: 22, lineHeight: 30, textTransform: "capitalize" }}>{title}</Text>
                 <Text style={{ color: COLORS.darkgray, fontSize: 16, lineHeight: 22 }}>{description}</Text>
             </View>
 
@@ -47,7 +47,7 @@ const Header = ({ title, description, month, percentage, category, content, time
                 <View style={{ marginLeft: SIZES.padding }}>
                     <Text style={{ color: COLORS.primary, fontSize: 16, lineHeight: 22 }}>{month}</Text>
                     
-                    <Text style={{ color: COLORS.darkgray, fontSize: 16, lineHeight: 22 }}>{(percentage) ? `${category} is ${percentage} ${times} than last Month`: content}</Text>
+                    <Text style={{ color: COLORS.darkgray, fontSize: 16, lineHeight: 22 }}>{(percentage) ? `${category} is ${percentage} ${times} than last Month` : content}</Text>
                 </View>
             </View>
         </View>

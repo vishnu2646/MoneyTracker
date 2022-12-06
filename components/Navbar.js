@@ -6,6 +6,8 @@ import {
     Image 
 } from "react-native";
 import React, { useState } from "react";
+import { BackHandler } from "react-native";
+import { useRoute } from '@react-navigation/native';
 import { 
     SIZES, 
     COLORS,
@@ -15,6 +17,7 @@ import {
 const Navbar = ({ navigation }) => {
 
     const [showOptions, setShowOptions] = useState(false);
+    const route = useRoute();
 
     const optionsList = [
         {
@@ -45,7 +48,13 @@ const Navbar = ({ navigation }) => {
                         justifyContent: "center",
                         width: 50
                     }}
-                    onPress={() => navigation.goBack(null)}
+                    onPress={() => {
+                        if(route.name === "Home") {
+                            BackHandler.exitApp();
+                        } else {
+                            navigation.goBack(null);
+                        }
+                    }}
                 >
                     <Image 
                         source={icons.back_arrow}
