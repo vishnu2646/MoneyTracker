@@ -1,6 +1,11 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { Home, Expense, Income, Detail } from './screens';
+import {
+    View,
+    Image
+} from "react-native";
+import { COLORS, icons } from './constants';
 
 const theme = {
     ...DefaultTheme,
@@ -62,6 +67,28 @@ export default function App() {
                     }}
                 />
             </Stack.Navigator>
+            <View style={{
+                height: 70,
+                width: 70,
+                backgroundColor: COLORS.peach,
+                borderRadius: 50,
+                justifyContent: "center",
+                alignItems: 'center',
+                position: "absolute",
+                bottom: 0,
+                left: 300,
+                right: 300,
+                zIndex: 1
+            }}>
+                <Image 
+                    source={icons.plus}
+                    style={{
+                        width: 25,
+                        height: 25,
+                        tintColor: COLORS.white
+                    }}
+                />
+            </View>
         </NavigationContainer>
     );
 }

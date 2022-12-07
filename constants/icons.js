@@ -14,6 +14,7 @@ export const sports_icon = require("../assets/icons/sports_icon.png");
 export const up_arrow = require("../assets/icons/up_arrow.png");
 export const income = require("../assets/icons/income.png");
 export const expense = require("../assets/icons/expense.png");
+export const plus = require("../assets/icons/plus.png")
 
 export default {
     baby_car,
@@ -31,5 +32,6 @@ export default {
     sports_icon,
     up_arrow,
     income,
-    expense
+    expense,
+    plus
 }
