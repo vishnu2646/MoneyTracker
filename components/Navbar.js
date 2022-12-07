@@ -5,6 +5,7 @@ import {
     TouchableOpacity, 
     Image 
 } from "react-native";
+import { Dimensions } from 'react-native';
 import React, { useState } from "react";
 import { BackHandler } from "react-native";
 import { useRoute } from '@react-navigation/native';
@@ -17,20 +18,20 @@ import {
 const Navbar = ({ navigation }) => {
 
     const [showOptions, setShowOptions] = useState(false);
+    let windowWidth = Dimensions.get('window').width;
     const route = useRoute();
 
     const optionsList = [
         {
-            title: "Income",
+            icon: icons.income,
+            title: "Income List",
             link: "Income"
         },
         {
-            title: "Expense",
+            icon: icons.expense,
+            title: "Expense List",
             link: "Expense"
-        },
-        {
-            title: "Close",
-        },
+        }
     ]
 
     return (
@@ -73,16 +74,14 @@ const Navbar = ({ navigation }) => {
                     }}
                     onPress={() => setShowOptions(!showOptions)}
                 >
-                    {!showOptions && (
-                        <Image 
-                            source={icons.more}
-                            style={{
-                                width: 20,
-                                height: 20,
-                                tintColor: COLORS.primary
-                            }}
-                        />
-                    )}
+                    <Image 
+                        source={icons.more}
+                        style={{
+                            width: 20,
+                            height: 20,
+                            tintColor: COLORS.primary
+                        }}
+                    />
                 </TouchableOpacity>
             </View>
             {showOptions && (
@@ -90,38 +89,77 @@ const Navbar = ({ navigation }) => {
                     backgroundColor: COLORS.white,
                     ...styles.shadow,
                     position: 'absolute',
-                    zIndex: 1000,
-                    right: 30,
-                    width: 200,
-                    top: 70,
+                    zIndex: 100,
+                    left: 0,
+                    top: 0,
+                    width: windowWidth / 1.5,
+                    height: '100%',
+                    paddingVertical: SIZES.padding,
                 }}>
-                    {optionsList.map((item, index) => {
-                        return(
-                            <TouchableOpacity
-                                key={index}
-                                onPress={() => {
-                                    if(item.link) {
-                                        navigation.navigate(item.title)
-                                        setShowOptions(!showOptions)
-                                    } else {
-                                        setShowOptions(!showOptions)
-                                    }
-                                }}
-                            >
-                                <Text 
-                                    style={{ 
-                                        padding: SIZES.padding, 
-                                        backgroundColor: index === optionsList.length -1 ? COLORS.red : null,
-                                        color: index === optionsList.length -1 ? COLORS.white : COLORS.black,
+                    <TouchableOpacity
+                        onPress={() => setShowOptions(!showOptions)} 
+                        style={{ 
+                            marginTop: 40, 
+                            position: 'absolute', 
+                            right: 0, 
+                            paddingHorizontal: SIZES.padding 
+                        }}
+                    >
+                        <Text 
+                            style={{ fontSize: 20 }}
+                        >
+                            X
+                        </Text>
+                    </TouchableOpacity>
+                    <View style={{ marginTop: 40, paddingHorizontal: SIZES.padding }}>
+                        {optionsList.map((item, index) => {
+                            return(
+                                <TouchableOpacity
+                                    key={index}
+                                    onPress={() => {
+                                        if(item.link) {
+                                            navigation.navigate(item.link)
+                                            setShowOptions(!showOptions)
+                                        } else {
+                                            setShowOptions(!showOptions)
+                                        }
                                     }}
                                 >
-                                    {item.title}
-                                </Text>
-                            </TouchableOpacity>
-                        )
-                    })}
-                
+                                    <View style={{ flexDirection: 'row', alignItems: "center" }}>
+                                        <Image 
+                                            source={item.icon}
+                                            style={{
+                                                width: 25,
+                                                height: 25
+                                            }}
+                                        />
+                                        <Text 
+                                            style={{ 
+                                                padding: 20,
+                                                color: COLORS.peach,
+                                                fontSize: 18
+                                            }}
+                                        >
+                                            {item.title}
+                                        </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            )
+                        })}
+                    </View>
                 </View>
+            )}
+            {showOptions && (
+                <TouchableOpacity
+                    onPress={() => setShowOptions(!showOptions)}
+                    style={{
+                        position: 'absolute',
+                        zIndex: 1,
+                        width: windowWidth,
+                        height: Dimensions.get('window').height,
+                        backgroundColor: COLORS.lightBlack
+                    }}
+                />
             )}
         </>
     );
@@ -139,5 +177,5 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 3,
-    }
+    },
 });
